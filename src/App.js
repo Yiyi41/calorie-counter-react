@@ -8,7 +8,7 @@ library.add(faTrash, faPenToSquare);
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  let add = { addMeal: "", addCalorie: "" };
+  let add = { addMeal: "", addCalorie: 0 };
   const [calorie, setCalorie] = useState();
   const [meal, setMeal] = useState("");
   const [tab, setTab] = useState([]);
@@ -28,11 +28,17 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     let newTab = [...tab];
+
+    let found = newTab.find((elm) => elm.addMeal === meal);
+
     add = { addMeal: meal, addCalorie: calorie };
 
     if (!add.addMeal || !add.addCalorie) {
       alert("nothing to add");
+    } else if (found != undefined) {
+      alert("this meal already saved, you can update it");
     } else {
       newTab.push(add);
       setTab(newTab);
