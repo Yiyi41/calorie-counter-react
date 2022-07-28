@@ -1,38 +1,81 @@
 .App {
-  text-align: center;
+  max-width: 600px;
+  height: 600px;
+  background-color: powderblue;
+  margin: 100px auto;
+  border-radius: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content {
   display: flex;
   flex-direction: column;
+  padding: 30px;
+}
+
+.btn {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-shadow: 4px 2px 2px #607d8b;
+  cursor: pointer;
+  background-color: white;
+}
+
+.form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.inputs {
+  height: 35px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.submitBtns {
+  display: flex;
+  gap: 10px;
+}
+
+/* tab */
+.tab {
+  width: 360px;
+  display: flex;
+}
+
+.tab p,
+.tab div {
+  flex: 1;
+}
+
+.tabHead,
+.tabFoot {
+  width: 240px;
+  display: flex;
+}
+
+.tabHead p,
+.tabFoot p {
+  flex: 1;
+}
+
+.colCalories {
+  border-left: 2px solid white;
+}
+
+.iconColor {
+  color: #ff008c;
+}
+
+.icons {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  justify-content: space-evenly;
 }
