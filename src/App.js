@@ -75,6 +75,7 @@ function App() {
         )}
         <Tab
           tab={tab}
+          setTotal={setTotal}
           total={total}
           handleClick={handleClick}
           setMeal={setMeal}

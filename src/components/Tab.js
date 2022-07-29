@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Tab = ({
+  setTab,
   tab,
   total,
+  setTotal,
   handleClick,
   setMeal,
   setCalorie,
@@ -10,7 +12,6 @@ const Tab = ({
   handleChangeMeal,
   meal,
   calorie,
-  setTab,
 }) => {
   // func for updating
   const handleUpdate = (index) => {
@@ -37,9 +38,12 @@ const Tab = ({
     // afficher l'élément modifié
   };
 
+  // func for delete
   const handleDelete = (index) => {
     let newTab = [...tab];
+    let elemToUpdate = newTab[index];
     newTab.splice(index, 1);
+    setTotal(total - elemToUpdate.addCalorie);
     setTab(newTab);
   };
 
