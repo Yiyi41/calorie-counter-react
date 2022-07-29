@@ -10,7 +10,9 @@ const Tab = ({
   handleChangeMeal,
   meal,
   calorie,
+  setTab,
 }) => {
+  // func for updating
   const handleUpdate = (index) => {
     console.log("cliqués : " + index);
     console.log(tab[index]);
@@ -35,6 +37,12 @@ const Tab = ({
     // afficher l'élément modifié
   };
 
+  const handleDelete = (index) => {
+    let newTab = [...tab];
+    newTab.splice(index, 1);
+    setTab(newTab);
+  };
+
   return (
     <div>
       <div className="tabHead">
@@ -48,7 +56,10 @@ const Tab = ({
             <p>{item.addCalorie}</p>
             <div className="icons">
               <span className="iconColor">
-                <FontAwesomeIcon icon="trash" />
+                <FontAwesomeIcon
+                  icon="trash"
+                  onClick={() => handleDelete(index)}
+                />
               </span>
               <span className="iconColor" onClick={() => handleUpdate(index)}>
                 <FontAwesomeIcon icon="pen-to-square" />

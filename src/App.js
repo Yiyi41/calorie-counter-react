@@ -81,6 +81,7 @@ function App() {
           setCalorie={setCalorie}
           handleChangeMeal={handleChangeMeal}
           handleChangeCalorie={handleChangeCalorie}
+          setTab={setTab}
         />
       </div>
     </div>
