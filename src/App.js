@@ -19,6 +19,9 @@ function App() {
   };
 
   const handleChangeMeal = (e) => {
+    // let info;
+    // info = e.target.value;
+    // return info;
     setMeal(e.target.value);
   };
 
@@ -33,11 +36,14 @@ function App() {
 
     let found = newTab.find((elm) => elm.addMeal === meal);
 
-    add = { addMeal: meal, addCalorie: calorie };
+    add = {
+      addMeal: meal,
+      addCalorie: calorie,
+    };
 
     if (!add.addMeal || !add.addCalorie) {
       alert("nothing to add");
-    } else if (found != undefined) {
+    } else if (found !== undefined) {
       alert("this meal already saved, you can update it");
     } else {
       newTab.push(add);
@@ -46,6 +52,7 @@ function App() {
       setMeal("");
       setCalorie("");
       setShowForm(false);
+      console.log(tab);
     }
   };
 
@@ -66,7 +73,15 @@ function App() {
             calorie={calorie}
           />
         )}
-        <Tab tab={tab} total={total} />
+        <Tab
+          tab={tab}
+          total={total}
+          handleClick={handleClick}
+          setMeal={setMeal}
+          setCalorie={setCalorie}
+          handleChangeMeal={handleChangeMeal}
+          handleChangeCalorie={handleChangeCalorie}
+        />
       </div>
     </div>
   );
