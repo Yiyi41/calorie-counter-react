@@ -4,12 +4,14 @@ import Form from "./components/Form";
 import Tab from "./components/Tab";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 library.add(faTrash, faPenToSquare);
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+
   let add = { addMeal: "", addCalorie: 0 };
-  const [calorie, setCalorie] = useState();
+  const [calorie, setCalorie] = useState("");
   const [meal, setMeal] = useState("");
   const [tab, setTab] = useState([]);
   const [total, setTotal] = useState(0);
@@ -19,9 +21,6 @@ function App() {
   };
 
   const handleChangeMeal = (e) => {
-    // let info;
-    // info = e.target.value;
-    // return info;
     setMeal(e.target.value);
   };
 
@@ -34,16 +33,23 @@ function App() {
 
     let newTab = [...tab];
 
-    let found = newTab.find((elm) => elm.addMeal === meal);
+    let found = newTab.find(
+      (elm) => elm.addMeal.toLowerCase() === meal.toLowerCase()
+    );
 
     add = {
       addMeal: meal,
       addCalorie: calorie,
     };
 
+    // quand les inputs ne sont pas remplis
     if (!add.addMeal || !add.addCalorie) {
       alert("nothing to add");
+
+      // vérifi si ce repas existe déjà
     } else if (found !== undefined) {
+      // si found exist, je veux juste changer la valeur de calorie, mais pas le nom de repas
+
       alert("this meal already saved, you can update it");
     } else {
       newTab.push(add);
@@ -52,7 +58,7 @@ function App() {
       setMeal("");
       setCalorie("");
       setShowForm(false);
-      console.log(tab);
+      // console.log(tab);
     }
   };
 
@@ -80,6 +86,8 @@ function App() {
           handleClick={handleClick}
           setMeal={setMeal}
           setCalorie={setCalorie}
+          meal={meal}
+          calorie={calorie}
           handleChangeMeal={handleChangeMeal}
           handleChangeCalorie={handleChangeCalorie}
           setTab={setTab}

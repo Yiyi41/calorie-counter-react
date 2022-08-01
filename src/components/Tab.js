@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UpdateForm from "./UpdateForm";
+import { useState } from "react";
 
 const Tab = ({
   setTab,
@@ -13,29 +15,31 @@ const Tab = ({
   meal,
   calorie,
 }) => {
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [updateMeal, setUpdateMeal] = useState("");
+  const [updateCalorie, setUpdateCalorie] = useState("");
+  const [index, setIndex] = useState();
+
+  const handleUpdateMeal = (e) => {
+    setUpdateMeal(e.target.value);
+  };
+
+  const handleUpdateCalorie = (e) => {
+    setUpdateCalorie(e.target.value);
+  };
+
   // func for updating
-  const handleUpdate = (index) => {
-    console.log("cliqués : " + index);
-    console.log(tab[index]);
-    // trouver l'élément cliqué grâce à l'index,
-    // faire réapparaitre le formulaire
+  const handleUpdate = (e) => {
+    e.preventDefault();
 
     let newTab = [...tab];
-    let elemToUpdate = newTab[index];
-    handleClick();
 
-    // les inputs de formulaire sont pré-remplis avec les info initiales de l'élément
-    setMeal(elemToUpdate.addMeal);
-    setCalorie(elemToUpdate.addCalorie);
+    // update
+    newTab[index].addCalorie = updateCalorie;
+    newTab[index].addMeal = updateMeal;
 
-    handleChangeMeal();
-    handleChangeCalorie();
-
-    // puis modifier l'élément, recupère meal et calorie à jour pour changer l'élement
-    setMeal(meal);
-    setCalorie(calorie);
-
-    // afficher l'élément modifié
+    setTab(newTab);
+    setTotal(total - newTab[index].addCalorie - updateCalorie);
   };
 
   // func for delete
@@ -49,10 +53,22 @@ const Tab = ({
 
   return (
     <div>
+      {showUpdateForm === true && (
+        <UpdateForm
+          showUpdateForm={showUpdateForm}
+          handleUpdate={handleUpdate}
+          handleUpdateMeal={handleUpdateMeal}
+          handleUpdateCalorie={handleUpdateCalorie}
+          updateMeal={updateMeal}
+          updateCalorie={updateCalorie}
+        />
+      )}
+
       <div className="tabHead">
         <p>Meals</p>
         <p>Calories</p>
       </div>
+
       {tab.map((item, index) => {
         return (
           <div className="tab" key={index}>
@@ -65,7 +81,15 @@ const Tab = ({
                   onClick={() => handleDelete(index)}
                 />
               </span>
-              <span className="iconColor" onClick={() => handleUpdate(index)}>
+              <span
+                className="iconColor"
+                onClick={() => {
+                  setShowUpdateForm(true);
+                  setIndex(index);
+                  setUpdateMeal(tab[index].addMeal);
+                  setUpdateCalorie(tab[index].addCalorie);
+                }}
+              >
                 <FontAwesomeIcon icon="pen-to-square" />
               </span>
             </div>
