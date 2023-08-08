@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/calorie-counter-react/static/css/main.b2cc4cc3.css",
+    "main.js": "/calorie-counter-react/static/js/main.5debbbb1.js",
+    "index.html": "/calorie-counter-react/index.html",
+    "main.b2cc4cc3.css.map": "/calorie-counter-react/static/css/main.b2cc4cc3.css.map",
+    "main.5debbbb1.js.map": "/calorie-counter-react/static/js/main.5debbbb1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b2cc4cc3.css",
+    "static/js/main.5debbbb1.js"
+  ]
+}
