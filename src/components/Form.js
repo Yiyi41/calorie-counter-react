@@ -6,10 +6,15 @@ const Form = ({
   handleSubmit,
   meal,
   calorie,
+  showForm,
 }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit} className="form">
+      <form
+        onSubmit={handleSubmit}
+        className="form"
+        style={{ opacity: showForm ? "1" : "0" }}
+      >
         <input
           className="inputs"
           type="text"

@@ -2,19 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UpdateForm from "./UpdateForm";
 import { useState } from "react";
 
-const Tab = ({
-  setTab,
-  tab,
-  total,
-  setTotal,
-  handleClick,
-  setMeal,
-  setCalorie,
-  handleChangeCalorie,
-  handleChangeMeal,
-  meal,
-  calorie,
-}) => {
+const Tab = ({ setTab, tab, total, setTotal }) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [updateMeal, setUpdateMeal] = useState("");
   const [updateCalorie, setUpdateCalorie] = useState("");
@@ -33,13 +21,15 @@ const Tab = ({
     e.preventDefault();
 
     let newTab = [...tab];
+    let currentCalorie = newTab[index].addCalorie;
 
     // update
     newTab[index].addCalorie = updateCalorie;
     newTab[index].addMeal = updateMeal;
 
     setTab(newTab);
-    setTotal(total - newTab[index].addCalorie - updateCalorie);
+    setTotal(total - parseInt(currentCalorie) + parseInt(updateCalorie));
+    setShowUpdateForm(false);
   };
 
   // func for delete
@@ -52,7 +42,7 @@ const Tab = ({
   };
 
   return (
-    <div>
+    <div className="tab-content">
       {showUpdateForm === true && (
         <UpdateForm
           showUpdateForm={showUpdateForm}
@@ -63,12 +53,10 @@ const Tab = ({
           updateCalorie={updateCalorie}
         />
       )}
-
       <div className="tabHead">
         <p>Meals</p>
         <p>Calories</p>
       </div>
-
       {tab.map((item, index) => {
         return (
           <div className="tab" key={index}>

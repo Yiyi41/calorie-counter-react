@@ -1,9 +1,21 @@
 .App {
-  max-width: 600px;
-  height: 600px;
+  max-width: 450px;
+  height: max-content;
   background-color: powderblue;
   margin: 100px auto;
   border-radius: 10px;
+  /* transition: opacity 0.4s;
+  opacity: 0.5; */
+}
+
+.App-style-for-modal {
+  max-width: 450px;
+  height: max-content;
+  background-color: powderblue;
+  margin: 100px auto;
+  border-radius: 10px;
+  transition: opacity 0.4s;
+  opacity: 0.5;
 }
 
 .content {
@@ -12,7 +24,12 @@
   padding: 30px;
 }
 
+.title {
+  text-align: center;
+}
+
 .btn {
+  margin: 0 auto;
   width: 100px;
   height: 30px;
   border: none;
@@ -24,11 +41,14 @@
 }
 
 .form {
-  margin-top: 10px;
+  margin: 0 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  /* position: relative;
+  opacity: 1;
+  transition: all 0.4s ease-in-out; */
 }
 
 .inputs {
@@ -37,6 +57,7 @@
   border: none;
   border-radius: 5px;
   padding: 10px;
+  font-size: 1rem;
 }
 
 .submitBtns {
@@ -45,6 +66,11 @@
 }
 
 /* tab */
+.tab-content {
+  margin: 0px auto;
+  font-size: 20px;
+}
+
 .tab {
   width: 360px;
   display: flex;

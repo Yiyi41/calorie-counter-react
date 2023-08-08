@@ -9,6 +9,7 @@ library.add(faTrash, faPenToSquare);
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [styleForModal, setStyleForModal] = useState(false);
 
   let add = { addMeal: "", addCalorie: 0 };
   const [calorie, setCalorie] = useState("");
@@ -18,6 +19,7 @@ function App() {
 
   const handleClick = () => {
     setShowForm(true);
+    setStyleForModal(true);
   };
 
   const handleChangeMeal = (e) => {
@@ -63,15 +65,13 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div style={{ opacity: showForm ? "0.7" : "1" }} className="App">
       <div className="content">
-        <h1>Calorie Counter</h1>
-        <button className="btn" onClick={handleClick}>
-          Add Meal
-        </button>
+        <h1 className="title">Calorie Counter</h1>
+
         {showForm === true && (
           <Form
-            setShowForm={setShowForm}
+            showForm={showForm}
             handleChangeMeal={handleChangeMeal}
             handleChangeCalorie={handleChangeCalorie}
             handleSubmit={handleSubmit}
@@ -79,19 +79,10 @@ function App() {
             calorie={calorie}
           />
         )}
-        <Tab
-          tab={tab}
-          setTotal={setTotal}
-          total={total}
-          handleClick={handleClick}
-          setMeal={setMeal}
-          setCalorie={setCalorie}
-          meal={meal}
-          calorie={calorie}
-          handleChangeMeal={handleChangeMeal}
-          handleChangeCalorie={handleChangeCalorie}
-          setTab={setTab}
-        />
+        <Tab tab={tab} setTotal={setTotal} total={total} setTab={setTab} />
+        <button className="btn" onClick={handleClick}>
+          Add Meal
+        </button>
       </div>
     </div>
   );
